@@ -4,6 +4,9 @@
  *
  */
 import { FontAwesome } from '@expo/vector-icons';
+import { Foundation } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons/"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -51,7 +54,7 @@ function RootNavigator() {
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const BottomTab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
@@ -65,31 +68,41 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
+        options={{
+          title:'',
+          tabBarIcon: ({ color }) => <AntDesign color="purple" name="creditcard" size={30} />,
+        }}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: '',
+          tabBarIcon: ({ color }) => <Foundation color="gray" name="graph-pie" size={30} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabThree"
+        component={TabTwoScreen}
+        options={{
+          title: '',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons color="gray" name="swap-horizontal" size={30}style={{transform: [{rotate: '-45deg'}]}} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabFour"
+        component={TabTwoScreen}
+        options={{
+          title: '',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons color="gray" name="message-outline" size={30} />,
+        }}
+      />
+       <BottomTab.Screen
+        name="TabFive"
+        component={TabTwoScreen}
+        options={{
+          title: '',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons color="gray" name="view-grid-outline" size={30} />,
         }}
       />
     </BottomTab.Navigator>
